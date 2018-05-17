@@ -43,18 +43,51 @@
 </head>
 
 <body>
-    <div class="app">
-        <h1>HalloKaiser</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">starting...</p>
-            <p class="event received"><a href="#" onclick="window.open('https://diedelsheimerstrasse22.de/kaiservz', '_system');">Hier geht's zum KaiserVZ</a></p>
-        </div>
-    </div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		function saveCredentials() {
+			localStorage['KaiserUsername']=$('#KaiserUsername').val();
+			localStorage['KaiserPassword']=$('#KaiserPassword').val();
+			//alert('stored:'+localStorage['KaiserUsername']+' or:'+$('KaiserUsername').val());
+		}
+		
+		function loadCredentials() {
+			if(localStorage['KaiserUsername']) {
+				$('#KaiserUsername').val(localStorage['KaiserUsername']);
+				//alert('found:'+$('#KaiserUsername').val());
+			} else {
+				//alert('not found');
+			
+			}
+			if(localStorage['KaiserPassword']) $('#KaiserPassword').val(localStorage['KaiserPassword']);
+		}
+		function openAkForum() {
+			var link = 'https://diedelsheimerstrasse22.de/kaiservz';
+			if(localStorage['KaiserUsername']) {
+				link+='/index.php?login=yes&login_button&login_name='+localStorage['KaiserUsername']+'&login_pass='+localStorage['KaiserPassword'];
+			}
+			window.open(link, '_system');
+		}
+	</script>
+	<div class="app">
+		<h1>HalloKaiser</h1>
+		<div id="deviceready" class="blink">
+			<p class="event listening">starting...</p>
+			<p class="event received"><a href="#" onclick="openAkForum();">Hier geht's zum KaiserVZ</a></p>
+		</div>
+		<div>
+			User:<input id="KaiserUsername" name="KaiserUsername" type="text" value=""/><br>
+			Password:<input id="KaiserPassword" name="KaiserPassword" type="password" value=""/><br/>
+			<input type="button" onclick="saveCredentials();" value="speichern"/>
+			<input type="button" onclick="loadCredentials();" value="laden"/>
+		</div>
+	</div>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		loadCredentials();
+		app.initialize();
+	</script>
 </body>
 
 </html>
