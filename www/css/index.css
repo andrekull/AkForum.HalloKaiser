@@ -24,24 +24,13 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
+    background-color:#FFFFFFF;
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
     width:100%;
 }
 
@@ -51,12 +40,23 @@ body {
     position:absolute;             /* position in the center of the screen */
     left:50%;
     top:50%;
-    height:50px;                   /* text area height */
+    height:210px;                   /* text area height */
     width:225px;                   /* text area width */
     text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+    padding:230px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-205px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
+}
+
+/* position of the app logo to make it clickable*/
+.applogo {
+	position:absolute;
+	top:0px;
+	left:50%;
+	height:200px;
+	width:170px;
+	padding:0px 0px 0px 0px;
+	margin:-0px 0px 0px -112px;
 }
 
 /* Landscape layout (with min-width) */
@@ -68,6 +68,19 @@ body {
                                       /* offset horizontal: half of image width and text area width */
     }
 }
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+	.applogo {
+		position:absolute;
+		top:50%;
+		left:0px;
+		height:200px;
+		width:170px;
+		padding:0px 0px 0px 0px;
+		margin:-100px 0px 0px 0px;
+	}
+}
+
 
 h1 {
     font-size:24px;
@@ -87,29 +100,3 @@ h1 {
     padding:2px 0px;
 }
 
-.event.listening {
-    background-color:#333333;
-    display:block;
-}
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
-}
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}

@@ -62,22 +62,45 @@
 			if(localStorage['KaiserPassword']) $('#KaiserPassword').val(localStorage['KaiserPassword']);
 		}
 		function openAkForum() {
-			var link = 'https://diedelsheimerstrasse22.de/kaiservz';
 			if(localStorage['KaiserUsername']) {
+				var link = 'https://diedelsheimerstrasse22.de/kaiservz';
 				link+='/index.php?login=yes&login_button&login_name='+localStorage['KaiserUsername']+'&login_pass='+localStorage['KaiserPassword'];
+				window.open(link, '_system');
+				
+				//var f = document.getElementById('InLogger');
+				//f.login_name.value = localStorage['KaiserUsername'];
+				//f.login_pass.value = localStorage['KaiserPassword'];
+				//window.open('', '_system');
+				//f.submit();
+				
+			} else {
+				var link = 'https://diedelsheimerstrasse22.de/kaiservz';
+				window.open(link, '_system');
 			}
-			window.open(link, '_system');
 		}
 	</script>
+	
+	<!--<form id="InLogger" method="post" action="https://diedelsheimerstrasse22.de/kaiservz/index.php?login=yes&login_button">
+		<input type="hidden" name="login" value="yes" onsubmit="return 0;"/>
+		<input type="hidden" name="login_button" value="login_button"/>
+		<input type="hidden" name="login_name" value="yourmum"/>
+		<input type="hidden" name="login_pass" value="mymum"/>
+	</form>-->
+	
 	<div class="app">
+		<div class="applogo" onclick="openAkForum();"></div>
 		<h1>HalloKaiser</h1>
 		<div id="deviceready" class="blink">
 			<p class="event listening">starting...</p>
-			<p class="event received"><a href="#" onclick="openAkForum();">Hier geht's zum KaiserVZ</a></p>
+				<p class="event received"></p>
 		</div>
 		<div>
-			User:<input id="KaiserUsername" name="KaiserUsername" type="text" value=""/><br>
-			Password:<input id="KaiserPassword" name="KaiserPassword" type="password" value=""/><br/>
+			<p 	onclick="openAkForum();">KaiserVZ im Browser &ouml;ffnen</p>
+			<table cellspacing="0" cellpadding="0">
+				<tr><td style="text-align:right;">Benutzer&nbsp;</td><td><input id="KaiserUsername" name="KaiserUsername" type="text" value=""/></td></tr>
+				<tr><td style="text-align:right;">Passwort&nbsp;</td><td><input id="KaiserPassword" name="KaiserPassword" type="password" value=""></td></tr>
+			</table>
+			<p/>
 			<input type="button" onclick="saveCredentials();" value="speichern"/>
 			<input type="button" onclick="loadCredentials();" value="laden"/>
 		</div>
